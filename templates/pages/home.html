@@ -1,0 +1,211 @@
+{% extends 'base.html' %}
+
+{% block title %}Accueil - Alpha Portfolio{% endblock %}
+
+{% block content %}
+
+<section class="home-hero">
+    <div class="home-hero-content">
+        <span class="home-badge">Disponible pour projets Django</span>
+
+        <h1>
+            Bonjour, je suis <span>{{ profile.name }}</span>
+        </h1>
+
+        <h2>{{ profile.role }}</h2>
+
+        <p class="home-intro">
+            {{ profile.intro }}
+        </p>
+
+        <div class="profile-info">
+            <div class="profile-info-item">
+                <span>📍 Localisation</span>
+                <strong>{{ profile.location }}</strong>
+            </div>
+
+            <div class="profile-info-item">
+                <span>✉️ Email</span>
+                <strong>{{ profile.email }}</strong>
+            </div>
+
+            <div class="profile-info-item">
+                <span>⚡ Statut</span>
+                {% if profile.available %}
+                    <strong class="status-available">Disponible</strong>
+                {% else %}
+                    <strong class="status-unavailable">Non disponible</strong>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="home-actions">
+            <a href="{% url 'projects' %}" class="btn">Voir mes projets</a>
+            <a href="{% url 'skills' %}" class="btn btn-secondary">Voir mes compétences</a>
+        </div>
+    </div>
+
+    <div class="home-hero-card">
+        <div class="code-window">
+            <div class="code-window-top">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="code-window-body">
+                <p><span class="code-purple">class</span> Developer:</p>
+                <p>&nbsp;&nbsp;<span class="code-blue">stack</span> = "Django"</p>
+                <p>&nbsp;&nbsp;<span class="code-blue">language</span> = "Python"</p>
+                <p>&nbsp;&nbsp;<span class="code-blue">focus</span> = "Backend"</p>
+                <p>&nbsp;&nbsp;<span class="code-green">available</span> = {{ profile.available }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stats-section">
+    <div class="stat-card">
+        <strong>{{ total_projects }}</strong>
+        <span>Projet{{ total_projects|pluralize }} dans le portfolio</span>
+    </div>
+
+    <div class="stat-card">
+        <strong>{{ skills|length }}</strong>
+        <span>Compétence{{ skills|length|pluralize }} principale{{ skills|length|pluralize }}</span>
+    </div>
+
+    <div class="stat-card">
+        {% if profile.available %}
+            <strong>Open</strong>
+            <span>Disponible pour collaborer</span>
+        {% else %}
+            <strong>Busy</strong>
+            <span>Non disponible actuellement</span>
+        {% endif %}
+    </div>
+</section>
+
+<section class="home-section">
+    <div class="section-header">
+        <div>
+            <span class="section-kicker">Featured work</span>
+            <h2>Projets mis en avant</h2>
+        </div>
+
+        <p>
+            Une sélection de projets qui montrent mes compétences en développement web.
+        </p>
+    </div>
+
+    {% for project in featured_projects %}
+        <article class="featured-project">
+            <div class="featured-content">
+                <span class="project-label">Projet principal</span>
+
+                <h2>{{ project.title }}</h2>
+
+                <p>{{ project.description }}</p>
+
+                <ul class="tech-stack">
+                    <li>{{ project.tech }}</li>
+                </ul>
+
+                <div class="featured-actions">
+                    <p>
+                        <a href="{% url 'project_detail' project.pk %}">Voir le projet</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="featured-preview">
+                <div class="preview-window">
+                    <div class="preview-top">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <div class="preview-body">
+                        <div class="preview-line large"></div>
+                        <div class="preview-line medium"></div>
+                        <div class="preview-line small"></div>
+
+                        <div class="preview-card">
+                            <strong>{{ project.title }}</strong>
+                            <p>{{ project.tech }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    {% empty %}
+        <article class="empty-card">
+            <h3>Aucun projet mis en avant</h3>
+            <p>
+                Ajoute un projet depuis l’admin Django et marque-le comme projet mis en avant.
+            </p>
+        </article>
+    {% endfor %}
+</section>
+
+<section class="home-section">
+    <div class="section-header">
+        <div>
+            <span class="section-kicker">Tech stack</span>
+            <h2>Compétences principales</h2>
+        </div>
+
+        <p>
+            Les technologies que j’apprends et pratique actuellement.
+        </p>
+    </div>
+
+    <div class="skills-grid">
+        {% for skill in skills %}
+            <article class="skill-card">
+                <div class="skill-icon">
+                    {{ skill.title|first }}
+                </div>
+
+                <div class="skill-content">
+                    <h3>{{ skill.title }}</h3>
+
+                    <div class="skill-meta">
+                        <span>{{ skill.get_category_display }}</span>
+                        <span>{{ skill.get_level_display }}</span>
+                    </div>
+                </div>
+            </article>
+        {% empty %}
+            <article class="empty-card">
+                <h3>Aucune compétence ajoutée</h3>
+                <p>
+                    Ajoute tes premières compétences depuis l’admin Django.
+                </p>
+            </article>
+        {% endfor %}
+    </div>
+
+    <div class="section-action">
+        <a href="{% url 'skills' %}" class="btn">Voir toutes mes compétences</a>
+    </div>
+</section>
+
+<section class="portfolio-summary">
+    {% if total_projects > 0 %}
+        <h2>Mon portfolio contient déjà {{ total_projects }} projet{{ total_projects|pluralize }}.</h2>
+        <p>
+            Découvre mes réalisations, mes applications Django et mes projets backend.
+        </p>
+    {% else %}
+        <h2>Portfolio en construction</h2>
+        <p>
+            Je n’ai pas encore ajouté de projet, mais cette section sera bientôt remplie.
+        </p>
+    {% endif %}
+
+    <a href="{% url 'projects' %}" class="btn">Voir mes projets</a>
+</section>
+
+{% endblock %}

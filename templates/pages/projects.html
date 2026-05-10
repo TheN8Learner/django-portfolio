@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Projets - Alpha Portfolio{% endblock %}
+
+{% block content %}
+
+<section class="page-hero projects-hero">
+    <span class="page-badge">Portfolio projects</span>
+
+    <h1>Mes projets</h1>
+
+    <p>
+        Une sélection de projets Django, applications web et expériences backend
+        que je construis pour progresser comme développeur.
+    </p>
+</section>
+
+<section class="projects-section">
+    <div class="section-header">
+        <div>
+            <span class="section-kicker">Work</span>
+            <h2>Applications & réalisations</h2>
+        </div>
+
+        <p>
+            Chaque projet montre une compétence précise : CRUD, authentification,
+            admin, permissions, API ou déploiement.
+        </p>
+    </div>
+
+    <div class="projects-grid">
+        {% for project in projects %}
+           {% include "partials/project_card.html" %}
+        {% empty %}
+            <article class="empty-card">
+                <h3>Aucun projet disponible</h3>
+            </article>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Alpha Portfolio{% endblock %}</title>    
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="{% url 'home' %}">Accueil</a>
+            <a href="{% url 'projects' %}">Projets</a>
+            <a href="{% url 'skills' %}">Compétences</a>
+            <a href="{% url 'about' %}">À propos</a>
+            <a href="{% url 'contact' %}">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Alpha Portfolio. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>

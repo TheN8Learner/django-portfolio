@@ -1,0 +1,57 @@
+<article class="project-card {% if project.is_featured %}project-card-featured{% endif %}">
+
+    <div class="project-media">
+        {% if project.image %}
+            <img src="{{ project.image.url }}" alt="{{ project.title }}">
+        {% else %}
+            <div class="project-media-placeholder">
+                <span>&lt;/&gt;</span>
+            </div>
+        {% endif %}
+
+        {% if project.is_featured %}
+            <span class="project-featured-badge">⭐ Mis en avant</span>
+        {% else %}
+            <span class="project-type-badge">Projet</span>
+        {% endif %}
+    </div>
+
+    <div class="project-card-body">
+        <div class="project-card-header">
+            <div>
+                <span class="project-small-label">Application web</span>
+                <h3>{{ project.title }}</h3>
+            </div>
+
+            <span class="project-status">
+                {{ project.get_status_display }}
+            </span>
+        </div>
+
+        <p class="project-description">
+            {{ project.description }}
+        </p>
+
+        <div class="project-tech-box">
+            <span>Stack utilisée</span>
+            <strong>{{ project.tech }}</strong>
+        </div>
+
+        <div class="project-meta">
+            <div>
+                <span>Ajouté le</span>
+                <strong>{{ project.created_at|date:"d F Y" }}</strong>
+            </div>
+
+            <div>
+                <span>Heure</span>
+                <strong>{{ project.created_at|date:"H:i" }}</strong>
+            </div>
+        </div>
+
+        <a href="{% url 'project_detail' project.pk %}" class="project-link">
+            Voir le projet
+        </a>
+    </div>
+
+</article>

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact - Alpha Portfolio{% endblock %}
+
+{% block content %}
+
+<section class="contact-hero">
+    <span class="page-badge">Contact</span>
+
+    <h1>Travaillons ensemble</h1>
+
+    <p>
+        Tu peux me contacter pour un projet web, une collaboration, une opportunité
+        ou simplement pour discuter développement Django / Python.
+    </p>
+</section>
+
+<section class="contact-layout">
+    <div class="contact-info-card">
+        <span class="contact-label">Disponible</span>
+
+        <h2>Parlons de ton projet</h2>
+
+        <p>
+            Envoie-moi un message avec quelques détails sur ce que tu veux construire.
+            Je te répondrai dès que possible.
+        </p>
+
+        <div class="contact-points">
+            <div class="contact-point">
+                <span>⚡</span>
+                <div>
+                    <strong>Projets web</strong>
+                    <p>Sites, dashboards, applications Django.</p>
+                </div>
+            </div>
+
+            <div class="contact-point">
+                <span>🧠</span>
+                <div>
+                    <strong>Backend</strong>
+                    <p>CRUD, auth, admin, permissions, API.</p>
+                </div>
+            </div>
+
+            <div class="contact-point">
+                <span>🚀</span>
+                <div>
+                    <strong>Portfolio & collaboration</strong>
+                    <p>Opportunités, stages, missions junior.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact-form-card">
+        {% if success %}
+            <div class="success-message">
+                <strong>Message envoyé avec succès.</strong>
+                <span>Merci, je te répondrai bientôt.</span>
+            </div>
+        {% endif %}
+
+        <form method="post" class="contact-form">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit">Envoyer le message</button>
+        </form>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ project.title }} - Alpha Portfolio{% endblock %}
+
+{% block content %}
+    <article>
+        <h1>{{ project.title }}</h1>
+
+        {% if project.image %}
+            <img src="{{ project.image.url }}" alt="{{ project.title }}" width="500">
+        {% endif %}
+
+        {% if project.is_featured %}
+            <p><strong>⭐ Projet mis en avant</strong></p>
+        {% endif %}
+
+        <p>{{ project.description }}</p>
+
+        <p><strong>Technologies :</strong> {{ project.tech }}</p>
+        <p><strong>Statut :</strong> {{ project.get_status_display }}</p>
+        <p><strong>Ajouté le :</strong> {{ project.created_at|date:"d F Y" }}</p>
+
+        {% if project.github_url %}
+            <p>
+                <a href="{{ project.github_url }}" target="_blank">Voir le code GitHub</a>
+            </p>
+         {% endif %}
+
+        {% if project.live_url %}
+            <p>
+                <a href="{{ project.live_url }}" target="_blank">Voir la démo en ligne</a>
+            </p>
+        {% endif %}
+
+        <p>
+            <a href="{% url 'projects' %}">← Retour aux projets</a>
+        </p>
+    </article>
+
+{% endblock %}

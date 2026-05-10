@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}Compétences - Alpha Portfolio{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+    <span class="page-badge">Stack technique</span>
+
+    <h1>Mes compétences</h1>
+
+    <p>
+        Voici les technologies que j’apprends, pratique et utilise pour construire
+        des applications web modernes avec Django, Python et le développement backend.
+    </p>
+</section>
+
+<section class="skills-section">
+    <div class="section-header">
+        <div>
+            <span class="section-kicker">Skills</span>
+            <h2>Technologies & outils</h2>
+        </div>
+
+        <p>
+            Une vue claire de ma progression actuelle, organisée par catégorie.
+        </p>
+    </div>
+
+    {% regroup skills by get_category_display as skill_categories %}
+
+    {% for category in skill_categories %}
+        <div class="skill-category-block">
+            <div class="skill-category-header">
+                <span class="skill-category-icon">&lt;/&gt;</span>
+                <div>
+                    <h2>{{ category.grouper }}</h2>
+                    <p>{{ category.list|length }} compétence{{ category.list|length|pluralize }}</p>
+                </div>
+            </div>
+
+            <div class="skills-grid">
+                {% for skill in category.list %}
+                    <article class="skill-card">
+                        <div class="skill-icon">
+                            {{ skill.title|first }}
+                        </div>
+
+                        <div class="skill-content">
+                            <h3>{{ skill.title }}</h3>
+
+                            <div class="skill-meta">
+                                <span>{{ category.grouper }}</span>
+                                <span>{{ skill.get_level_display }}</span>
+                            </div>
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+        </div>
+    {% empty %}
+        <article class="empty-card">
+            <h3>Aucune compétence ajoutée</h3>
+            <p>
+                Ajoute tes premières compétences depuis l’admin Django pour les afficher ici.
+            </p>
+        </article>
+    {% endfor %}
+</section>
+
+{% endblock %}

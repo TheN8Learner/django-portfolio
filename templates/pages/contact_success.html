@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Message envoyé - Alpha Portfolio{% endblock %}
+
+{% block content %}
+
+<section class="message-success-page">
+    <div class="success-terminal-card">
+        <div class="success-terminal-top">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="success-terminal-body">
+            <div class="success-icon">✓</div>
+
+            <span class="success-label">Message sent</span>
+
+            <h1>Message envoyé avec succès</h1>
+
+            <p>
+                Merci pour ton message. Je te répondrai dès que possible pour discuter
+                du projet, de la collaboration ou de l’opportunité.
+            </p>
+
+            <div class="success-code-line">
+                <span class="code-cyan">status</span>
+                <span>=</span>
+                <span class="code-blue">"delivered"</span>
+            </div>
+
+            <div class="success-actions">
+                <a href="{% url 'home' %}" class="btn">Retour à l’accueil</a>
+                <a href="{% url 'projects' %}" class="btn btn-secondary">Voir mes projets</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
