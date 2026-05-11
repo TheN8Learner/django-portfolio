@@ -49,9 +49,23 @@
             </div>
         </div>
 
-        <a href="{% url 'project_detail' project.pk %}" class="project-link">
-            Voir le projet
-        </a>
+        <div class="project-actions">
+            <a href="{% url 'project_detail' project.pk %}" class="project-link">
+                Voir le projet
+            </a>
+
+            {% if project.github_url %}
+                <a href="{{ project.github_url }}" class="project-link project-link-secondary" target="_blank" rel="noopener noreferrer">
+                    GitHub
+                </a>
+            {% endif %}
+
+            {% if project.live_url %}
+                <a href="{{ project.live_url }}" class="project-link project-link-secondary" target="_blank" rel="noopener noreferrer">
+                    Live
+                </a>
+            {% endif %}
+        </div>
     </div>
 
 </article>

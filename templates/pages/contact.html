@@ -54,13 +54,6 @@
     </div>
 
     <div class="contact-form-card">
-        {% if success %}
-            <div class="success-message">
-                <strong>Message envoyé avec succès.</strong>
-                <span>Merci, je te répondrai bientôt.</span>
-            </div>
-        {% endif %}
-
         <form method="post" class="contact-form">
             {% csrf_token %}
 

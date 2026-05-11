@@ -1,14 +1,92 @@
 {% extends 'base.html' %}
 
-{% block title %}À propos - Mon Entreprise{% endblock %}
+{% block title %}À propos - Alpha Portfolio{% endblock %}
 
 {% block content %}
-    <h1>À propos de nous</h1>
-    <p>
-        Mon Entreprise accompagne les professionnels dans leur transformation digitale.
-    </p>
+
+<section class="about-hero">
+    <span class="page-badge">À propos</span>
+
+    <h1>À propos de moi</h1>
 
     <p>
-        Notre objectif est de proposer des solutions simples, modernes et efficaces.
+        Je suis un développeur en progression, concentré sur Django, Python
+        et la création d’applications modernes, propres et utiles se specialiseant dans le backend.
     </p>
+</section>
+
+<section class="about-layout">
+    <div class="about-main-card">
+        <span class="section-kicker">Mon objectif</span>
+
+        <h2>Construire des solutions  simples, efficaces et professionnelles</h2>
+
+        <p>
+            J’apprends et je pratique le développement backend à travers des projets concrets :
+            portfolio, blog, applications CRUD, authentification, admin Django,
+            permissions et déploiement.
+        </p>
+
+        <p>
+            Mon objectif est de devenir un développeur Django capable de créer des
+            applications propres, maintenables et utiles pour des clients, entreprises
+            ou projets personnels.
+        </p>
+    </div>
+
+    <div class="about-code-card">
+        <div class="code-window">
+            <div class="code-window-top">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="code-window-body">
+                <p><span class="code-purple">class</span> AlphaDeveloper:</p>
+                <p>&nbsp;&nbsp;<span class="code-blue">stack</span> = "Django"</p>
+                <p>&nbsp;&nbsp;<span class="code-blue">language</span> = "Python"</p>
+                <p>&nbsp;&nbsp;<span class="code-blue">focus</span> = "Backend"</p>
+                <p>&nbsp;&nbsp;<span class="code-green">status</span> = "Learning & building"</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="about-values">
+    <div class="section-header">
+        <div>
+            <span class="section-kicker">Valeurs</span>
+            <h2>Ce que je veux améliorer dans chaque projet</h2>
+        </div>
+
+        <p>
+            Chaque projet est une occasion de pratiquer et de progresser.
+        </p>
+    </div>
+
+    <div class="values-grid">
+        <article class="value-card">
+            <h3>Code propre</h3>
+            <p>
+                Écrire du code organisé, lisible et facile à maintenir.
+            </p>
+        </article>
+
+        <article class="value-card">
+            <h3>Fonctionnalités utiles</h3>
+            <p>
+                Construire des pages, formulaires, CRUD et dashboards qui servent vraiment.
+            </p>
+        </article>
+
+        <article class="value-card">
+            <h3>Design moderne</h3>
+            <p>
+                Créer des interfaces simples, responsive et agréables à utiliser.
+            </p>
+        </article>
+    </div>
+</section>
+
 {% endblock %}
